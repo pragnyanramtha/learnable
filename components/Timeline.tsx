@@ -34,7 +34,7 @@ export default function Timeline() {
         <div className="absolute left-2 top-0 bottom-0 w-px bg-white/10" />
 
         <div className="relative mb-8 pl-4">
-          <div className="absolute left-2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-blue-400 shadow-[0_0_0_4px_rgba(59,130,246,0.15)]" />
+          <div className="absolute -left-2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-blue-400 shadow-[0_0_0_4px_rgba(59,130,246,0.15)]" />
           <p className="text-sm text-neutral-500">The next exam is on 13 Apr 2026.</p>
         </div>
 
@@ -43,9 +43,9 @@ export default function Timeline() {
             <Link
               key={`${event.slug}-${event.date}-${event.time}`}
               href={`/hub/${event.slug}`}
-              className="group relative block py-5 pl-4 transition-colors hover:bg-white/[0.02]"
+              className="group relative block py-5 pl-6 sm:pl-8 transition-colors hover:bg-white/[0.02]"
             >
-              <div className="absolute left-2 top-8 h-2 w-2 -translate-x-1/2 rounded-full bg-white/35 transition-colors group-hover:bg-blue-400" />
+              <div className="absolute -left-2 top-8 h-2 w-2 -translate-x-1/2 rounded-full bg-white/35 transition-colors group-hover:bg-blue-400" />
 
               <div className="min-w-0 pr-6">
                 <h3 className="break-words text-lg font-semibold tracking-tight text-white sm:text-xl leading-tight">
