@@ -101,6 +101,14 @@ A. 3 | B. 4 | C. 5 | D. 6
 A. 5 | B. 6 | C. 7 | D. 8
 <Answer: A. 5>
 
+**26. “Six” means:**
+A. 6 | B. 7 | C. 8 | D. 9
+<Answer: A. 6>
+
+**27. “Sept” means:**
+A. 5 | B. 7 | C. 9 | D. 10
+<Answer: B. 7>
+
 **28. “Huit” means:**
 A. 6 | B. 7 | C. 8 | D. 9
 <Answer: C. 8>
@@ -184,6 +192,14 @@ A. Teacher | B. Doctor | C. Engineer | D. Student
 **48. “Professeur” means:**
 A. Teacher | B. Doctor | C. Student | D. Driver
 <Answer: A. Teacher>
+
+**49. “Ingénieur” means:**
+A. Teacher | B. Doctor | C. Engineer | D. Student
+<Answer: C. Engineer>
+
+**50. “Commerçant(e)” means:**
+A. Tourist | B. Shopkeeper | C. Driver | D. Student
+<Answer: B. Shopkeeper>
 
 ---
 
@@ -281,6 +297,10 @@ A. I eat | B. I sleep | C. I run | D. I drink
 A. I eat | B. I sleep | C. I run | D. I wake
 <Answer: B. I sleep>
 
+**24. “Grand/Grande” means:**
+A. Big | B. Small | C. Beautiful | D. Intelligent
+<Answer: A. Big>
+
 **25. “Petit” means:**
 A. Big | B. Small | C. Tall | D. Long
 <Answer: B. Small>
@@ -377,6 +397,10 @@ A. Formal | B. Informal | C. Official | D. Written
 A. Communication | B. Studies | C. Jobs | D. All
 <Answer: D. All>
 
+**49. “Au revoir” means:**
+A. Goodbye | B. Please | C. Thank you | D. Good evening
+<Answer: A. Goodbye>
+
 **50. How do you say "three" in French?**
 A) six | B) huit | C) trois | D) dix
 <Answer: C) trois>
@@ -393,9 +417,9 @@ A) Millions | B) Thousands | C) Billions | D) Hundreds
 A) Europe only | B) Europe, Africa, North America | C) Asia only | D) South America only
 <Answer: B) Europe, Africa, North America>
 
-**3. What is the rank of French as a widely Spoken language in the world?**
-A) First | B) Fifth | C) tenth | D) Second
-<Answer: Rank not explicitly stated in sources>
+**3. Which of these is mentioned as a benefit of learning French?**
+A) Diplomacy | B) Tourism | C) International trade | D) All of the above
+<Answer: D) All of the above>
 
 **4. Which language, alongside English, is taught in every country in the world?**
 A) Spanish | B) Mandarin | C) French | D) German
@@ -437,9 +461,9 @@ A) Je Suis etudiant€ | B) J'ai 18 ans | C) Je viens de l'Inde | D) Je m'appell
 A) deux | B) un | C) trois | D) quatre
 <Answer: B) un>
 
-**14. [Question missing in source]**
+**14. What is the French word for "three"?**
 A) six | B) huit | C) trois | D) dix
-<Answer: Cannot be determined>
+<Answer: C) trois>
 
 **15. Which French word means "five"?**
 A) sept | B) neuf | C) cinq | D) un
@@ -501,6 +525,10 @@ A) Tomorrow | B) Yesterday | C) Today | D) Now
 A) hier | B) demain | C) maintenant | D) aujourd'hui
 <Answer: B) demain>
 
+**30. How do you say "Yesterday" in French?**
+A) aujourd'hui | B) demain | C) hier | D) maintenant
+<Answer: C) hier>
+
 **31. Which French word means "now"?**
 A) demain | B) hier | C) maintenant | D) aujourd'hui
 <Answer: C) maintenant>
@@ -513,9 +541,9 @@ A) Mother | B) Father | C) Brother | D) Sister
 A) Father | B) Mother | C) Brother | D) Sister
 <Answer: C) Brother>
 
-**34. How do you Say "mother" in French?**
-A) Père | B) frère | C) Merd | D) Soeur
-<Answer: C) Merd (Typo in source text for mère)>
+**34. How do you say "mother" in French?**
+A) Père | B) frère | C) mère | D) sœur
+<Answer: C) mère>
 
 **35. Which word means "Sister"?**
 A) Père | B) mère | C) frère | D) Soeur
@@ -561,9 +589,13 @@ A) je | B) tu | C) nous | D) Vous
 A) I eat | B) I sleep | C) I wake up | D) I go to School
 <Answer: C) I wake up>
 
-**47. What does "belle" describe?**
-A) a person | B) an object | C) a place | D) an activity
-<Answer: C) a place>
+**46. What does "Je vais à l'école" mean in English?**
+A) I go to school | B) I eat | C) I sleep | D) I am a tourist
+<Answer: A) I go to school>
+
+**47. What does "belle" mean in English?**
+A) Beautiful | B) Small | C) Straight | D) Expensive
+<Answer: A) Beautiful>
 
 **48. What is the Correct French phrase for asking "where is...?"**
 A) A droite | B) A gauche | C) Tout droit | D) Où est...?
@@ -574,6 +606,6 @@ A) A droite | B) A gauche | C) Tout droit | D) Je suis touriste.
 <Answer: A) A droite>
 
 **50. How do you ask "Do you speak English?" in French?**
-a) Aidez-moi, s'il vous plait | b) Je ne comprends pas | c) Parlez-vous anglais ? | d) Je suis touriste
-<Answer: c) Parlez-vous anglais ?>
+A) Aidez-moi, s'il vous plait | B) Je ne comprends pas | C) Parlez-vous anglais ? | D) Je suis touriste
+<Answer: C) Parlez-vous anglais ?>
 ```

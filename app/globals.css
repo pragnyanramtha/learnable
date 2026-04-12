@@ -41,25 +41,6 @@ body {
   line-height: 1.6;
 }
 
-/* Timeline specific styles */
-.timeline-line::before {
-  content: '';
-  position: absolute;
-  top: 6px;
-  bottom: 0;
-  left: 20px;
-  width: 1px;
-  background: var(--border);
-  z-index: 0;
-}
-
-@media (min-width: 768px) {
-  .timeline-line::before {
-    left: 50%;
-    margin-left: -0.5px;
-  }
-}
-
 /* Minimalist prose for purely dark contrast */
 .prose {
   --tw-prose-body: var(--muted);

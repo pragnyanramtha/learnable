@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Calendar, ChevronRight, Clock, MapPin } from 'lucide-react';
+import { Calendar, ChevronRight, Clock, MapPin } from 'lucide-react';
 
 interface ExamEvent {
   date: string;
@@ -30,16 +30,12 @@ export default function Timeline() {
         Today · 12 Apr 2026
       </div>
 
-      <div className="relative pl-6 sm:pl-8">
+      <div className="relative pl-4">
         <div className="absolute left-2 top-0 bottom-0 w-px bg-white/10" />
 
-        <div className="relative mb-8 pl-6 sm:pl-8">
+        <div className="relative mb-8 pl-4">
           <div className="absolute left-2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-blue-400 shadow-[0_0_0_4px_rgba(59,130,246,0.15)]" />
-          <div className="flex items-center gap-2 text-sm font-medium text-white">
-            <ArrowRight className="h-4 w-4 text-blue-400" />
-            <span>You are here</span>
-          </div>
-          <p className="mt-1 text-sm text-neutral-500">The next exam is on 13 Apr 2026.</p>
+          <p className="text-sm text-neutral-500">The next exam is on 13 Apr 2026.</p>
         </div>
 
         <div className="space-y-1">
@@ -47,7 +43,7 @@ export default function Timeline() {
             <Link
               key={`${event.slug}-${event.date}-${event.time}`}
               href={`/hub/${event.slug}`}
-              className="group relative block border-l border-white/10 py-5 pl-6 sm:pl-8 transition-colors hover:border-blue-400/50 hover:bg-white/[0.02]"
+              className="group relative block py-5 pl-4 transition-colors hover:bg-white/[0.02]"
             >
               <div className="absolute left-2 top-8 h-2 w-2 -translate-x-1/2 rounded-full bg-white/35 transition-colors group-hover:bg-blue-400" />
 
