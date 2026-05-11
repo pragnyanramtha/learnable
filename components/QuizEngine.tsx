@@ -47,6 +47,7 @@ export default function QuizEngine({ questions }: QuizEngineProps) {
                     key={oIndex}
                     onClick={() => handleSelect(q.id, oIndex)}
                     disabled={isAnswered}
+                    aria-label={`Answer ${getOptionLetter(oIndex)}: ${opt}`}
                     className={clsx(
                       'flex min-h-12 items-start justify-between gap-3 rounded-[1.5rem] border px-4 py-3 text-left transition-colors duration-200',
                       !isAnswered && 'border-white/10 bg-white/[0.02] hover:border-[color:rgba(244,200,81,0.28)] hover:bg-white/[0.05] cursor-pointer',

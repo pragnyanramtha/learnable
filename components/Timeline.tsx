@@ -10,37 +10,50 @@ export default function Timeline() {
   const nextEvent = examEvents[0];
 
   return (
-    <section className="mx-auto flex w-full max-w-5xl flex-col gap-8 overflow-x-hidden pb-8">
-      <div className="surface-panel rounded-[2rem] p-4 sm:p-6">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 overflow-x-hidden pb-8">
+      <section className="surface-panel rounded-[2rem] p-4 sm:p-6" aria-labelledby="announcement-heading">
         <div className="flex flex-wrap items-center gap-3">
+          <h2 id="announcement-heading" className="sr-only">Platform announcement</h2>
           <Badge tone="gold">New</Badge>
           <Badge tone="navy">Zero Cost Access</Badge>
           <span className="text-sm text-[var(--color-text-secondary)]">
             Built to keep revision materials reachable, clear, and fast.
           </span>
         </div>
-      </div>
+      </section>
 
-      <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+      <section className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]" aria-labelledby="hero-heading">
         <div className="surface-panel rounded-[2.5rem] p-6 sm:p-8">
           <div className="mb-5 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--color-action-primary)]">
             <MapPin className="h-3.5 w-3.5" />
             Today · {siteConfig.todayLabel}
           </div>
-          <h1 className="font-display max-w-4xl text-5xl leading-[0.94] text-[var(--color-text-primary)] sm:text-6xl lg:text-7xl">
+          <h1 id="hero-heading" className="font-display max-w-4xl text-5xl leading-[0.94] text-[var(--color-text-primary)] sm:text-6xl lg:text-7xl">
             Study access should feel calm, clear, and within reach.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--color-text-secondary)] sm:text-lg">
-            ABLE now carries a bold visual language: deep navy contrast, expressive serif headings,
-            pill-shaped actions, and a cleaner path from class schedule to study material to quiz practice.
+            Browse accessible Python classes, move between reading and quiz practice, and jump back to the main LearnABLE site whenever you need the wider program.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/hub" size="lg">
+            <Button href="/hub" size="lg" aria-label="Open the subject hub">
               Open Subject Hub
               <ArrowRight className="h-4 w-4" />
             </Button>
-            <Button href={`/${nextEvent ? `hub/${nextEvent.slug}` : 'hub'}`} variant="outline" size="lg">
+            <Button
+              href={`/${nextEvent ? `hub/${nextEvent.slug}` : 'hub'}`}
+              variant="outline"
+              size="lg"
+              aria-label={nextEvent ? `Open next class module for ${nextEvent.title}` : 'Open next class module'}
+            >
               Start With Next Class
+            </Button>
+            <Button
+              href="https://learnableindia.org"
+              variant="outline"
+              size="lg"
+              aria-label="Return to LearnABLE India main website"
+            >
+              Back to learnableindia.org
             </Button>
           </div>
         </div>
@@ -66,7 +79,7 @@ export default function Timeline() {
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
             <div className="surface-soft rounded-[1.75rem] p-5">
               <p className="font-display text-4xl text-[var(--color-text-primary)]">{subjects.length}</p>
-              <p className="mt-2 text-sm text-[var(--color-text-secondary)]">Subjects organized into one hub.</p>
+              <p className="mt-2 text-sm text-[var(--color-text-secondary)]">Topics organized into one hub.</p>
             </div>
             <div className="surface-soft rounded-[1.75rem] p-5">
               <p className="font-display text-4xl text-[var(--color-text-primary)]">{examEvents.length}</p>
@@ -78,14 +91,14 @@ export default function Timeline() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]" aria-labelledby="timeline-heading">
         <div className="surface-panel rounded-[2.25rem] p-6 sm:p-8">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
               <Badge tone="navy">Class Timeline</Badge>
-              <h2 className="font-display mt-4 text-4xl text-[var(--color-text-primary)]">What’s coming up next</h2>
+              <h2 id="timeline-heading" className="font-display mt-4 text-4xl text-[var(--color-text-primary)]">What’s coming up next</h2>
             </div>
             <p className="max-w-md text-sm leading-7 text-[var(--color-text-secondary)]">
               Large dates, calm contrast, and one clear action per item keep the class plan easy to scan.
@@ -106,6 +119,7 @@ export default function Timeline() {
                 <Link
                   key={`${event.slug}-${event.date}-${event.time}`}
                   href={`/hub/${event.slug}`}
+                  aria-label={`Open module for ${event.title} on ${event.date} at ${event.time}`}
                   className="group relative block rounded-[1.75rem] border border-white/8 bg-white/[0.02] py-5 pl-6 pr-5 transition-all hover:border-[color:rgba(244,200,81,0.28)] hover:bg-white/[0.05]"
                 >
                   <div className="absolute -left-2 top-8 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-white/35 transition-colors group-hover:bg-[var(--color-action-primary)]" />
@@ -138,14 +152,14 @@ export default function Timeline() {
           </div>
         </div>
 
-        <div className="grid gap-6">
+        <section className="grid gap-6" aria-labelledby="flow-heading">
           <div className="surface-panel rounded-[2.25rem] p-6">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[color:rgba(244,200,81,0.16)] text-[var(--color-action-primary)]">
                 <BookOpenCheck className="h-5 w-5" />
               </div>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-action-primary)]">Focused Flow</p>
+                <p id="flow-heading" className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-action-primary)]">Focused Flow</p>
                 <p className="text-sm text-[var(--color-text-secondary)]">A simpler path from plan to practice.</p>
               </div>
             </div>
@@ -164,8 +178,8 @@ export default function Timeline() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      </section>
+    </div>
   );
 }

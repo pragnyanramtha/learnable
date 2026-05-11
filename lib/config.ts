@@ -1,8 +1,8 @@
 import { SubjectConfig, ClassEvent } from './types';
 
 export const siteConfig = {
-  name: 'LEARNABLE',
-  shortName: 'LEARNABLE',
+  name: 'LearnABLE',
+  shortName: 'LearnABLE',
   description: 'Accessible class hub',
   tagline: 'Classes, notes, and practice in one place',
   todayLabel: '11 May 2026',

@@ -7,7 +7,7 @@ export default function TopBar() {
   const router = useRouter();
   
   return (
-    <div className="surface-panel sticky top-3 z-50 mb-6 flex h-14 w-full items-center rounded-full px-4 backdrop-blur-xl md:hidden">
+    <div className="surface-panel sticky top-22 z-40 mb-6 flex h-14 w-full items-center rounded-full px-4 backdrop-blur-xl md:hidden">
       <button 
         onClick={() => router.back()}
         aria-label="Go back"
