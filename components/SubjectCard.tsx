@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
+import type { SubjectConfig } from '@/lib/types';
 
-interface SubjectCardProps {
-  title: string;
-  slug: string;
-  description: string;
+interface SubjectCardProps extends SubjectConfig {
   isAvailable?: boolean;
 }
 
-export default function SubjectCard({ title, slug, description, isAvailable = true }: SubjectCardProps) {
+export default function SubjectCard({ id, title, description, isAvailable = true }: SubjectCardProps) {
   return (
-    <Link 
-      href={isAvailable ? `/hub/${slug}` : '#'}
+    <Link
+      href={isAvailable ? `/hub/${id}` : '#'}
       className={`group block rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-200 hover:bg-white/[0.04] hover:border-white/20 ${isAvailable ? 'cursor-pointer' : 'cursor-not-allowed opacity-50 grayscale'}`}
     >
       <div className="flex flex-col h-full min-h-[9rem]">
@@ -20,7 +18,7 @@ export default function SubjectCard({ title, slug, description, isAvailable = tr
         </div>
         <h3 className="text-lg font-semibold text-white mb-1.5 leading-tight">{title}</h3>
         <p className="text-neutral-400 text-sm flex-grow leading-relaxed">{description}</p>
-        
+
         <div className="mt-5 flex items-center justify-between pt-4 border-t border-white/10">
           <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors">
             {isAvailable ? 'Access Module' : 'Coming Soon'}

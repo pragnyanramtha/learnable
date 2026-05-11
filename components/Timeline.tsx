@@ -2,32 +2,14 @@
 
 import Link from 'next/link';
 import { Calendar, ChevronRight, Clock, MapPin } from 'lucide-react';
-
-interface ExamEvent {
-  date: string;
-  day: string;
-  time: string;
-  title: string;
-  slug: string;
-}
-
-const timelineData: ExamEvent[] = [
-  { date: '13-04-2026', day: 'Monday', time: '10:00 AM - 12:00 PM', title: 'Foreign Language (French)', slug: 'french' },
-  { date: '15-04-2026', day: 'Wednesday', time: '10:00 AM - 12:00 PM', title: 'Mathematics for Problem Solving', slug: 'maths' },
-  { date: '15-04-2026', day: 'Wednesday', time: '1:30 PM - 3:30 PM', title: 'Data Structures', slug: 'dsa' },
-  { date: '16-04-2026', day: 'Thursday', time: '10:00 AM - 12:00 PM', title: 'Database Management Systems', slug: 'dbms' },
-  { date: '16-04-2026', day: 'Thursday', time: '1:30 PM - 3:30 PM', title: 'Web Application Development-II', slug: 'web' },
-  { date: '17-04-2026', day: 'Friday', time: '10:00 AM - 12:00 PM', title: 'Universal Human Values', slug: 'uhv' },
-  { date: '17-04-2026', day: 'Friday', time: '1:30 PM - 3:30 PM', title: 'Fundamentals of Quantum Computing', slug: 'quantum' },
-  { date: '17-04-2026', day: 'Friday', time: '1:30 PM - 3:30 PM', title: 'Computer Aided Engineering Graphics', slug: 'caeg' },
-];
+import { examEvents, siteConfig } from '@/lib/config';
 
 export default function Timeline() {
   return (
     <section className="w-full max-w-3xl mx-auto overflow-x-hidden">
       <div className="mb-6 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-blue-400/80">
         <MapPin className="h-3.5 w-3.5" />
-        Today · 12 Apr 2026
+        Today · {siteConfig.todayLabel}
       </div>
 
       <div className="relative pl-4">
@@ -35,11 +17,11 @@ export default function Timeline() {
 
         <div className="relative mb-8 pl-4">
           <div className="absolute -left-2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-blue-400 shadow-[0_0_0_4px_rgba(59,130,246,0.15)]" />
-          <p className="text-sm text-neutral-500">The next exam is on 13 Apr 2026.</p>
+          <p className="text-sm text-neutral-500">The next exam is on {examEvents[0]?.date ?? 'TBD'}.</p>
         </div>
 
         <div className="space-y-1">
-          {timelineData.map((event) => (
+          {examEvents.map((event) => (
             <Link
               key={`${event.slug}-${event.date}-${event.time}`}
               href={`/hub/${event.slug}`}

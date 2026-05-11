@@ -3,14 +3,7 @@
 import { useState } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
 import clsx from 'clsx';
-
-export interface QuizQuestion {
-  id: string;
-  question: string;
-  options: string[];
-  correctAnswer: string;
-  correctLetter: string;
-}
+import type { QuizQuestion } from '@/lib/types';
 
 interface QuizEngineProps {
   questions: QuizQuestion[];
@@ -18,13 +11,13 @@ interface QuizEngineProps {
 
 export default function QuizEngine({ questions }: QuizEngineProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
-  
+
   const handleSelect = (questionId: string, optionIndex: number) => {
-    if (selectedAnswers[questionId]) return; // Only one selection per question initially
+    if (selectedAnswers[questionId]) return;
     setSelectedAnswers(prev => ({ ...prev, [questionId]: String(optionIndex) }));
   };
 
-  const getOptionLetter = (index: number) => String.fromCharCode(65 + index); // A, B, C, D
+  const getOptionLetter = (index: number) => String.fromCharCode(65 + index);
 
   if (!questions || questions.length === 0) {
     return <div className="py-4 text-sm text-neutral-400">No quiz available for this subject yet.</div>;
@@ -35,9 +28,8 @@ export default function QuizEngine({ questions }: QuizEngineProps) {
       {questions.map((q, qIndex) => {
         const selectedIndex = selectedAnswers[q.id];
         const isAnswered = selectedIndex !== undefined;
-        // In our parsed format, correctLetter is ideally something like "C", but sometimes it could be extracted differently.
         const correctIndex = q.options.findIndex((_, index) => getOptionLetter(index) === q.correctLetter);
-        
+
         return (
           <div key={q.id} className="border-t border-white/10 pt-6">
             <h3 className="text-base font-semibold text-white sm:text-lg leading-snug">
@@ -48,7 +40,7 @@ export default function QuizEngine({ questions }: QuizEngineProps) {
                 const isSelected = selectedIndex === String(oIndex);
                 const isCorrect = isAnswered && oIndex === correctIndex;
                 const isWrong = isSelected && !isCorrect;
-                
+
                 return (
                   <button
                     key={oIndex}
@@ -63,7 +55,7 @@ export default function QuizEngine({ questions }: QuizEngineProps) {
                     )}
                   >
                     <span className="flex-1 leading-relaxed text-sm sm:text-[15px]">
-                      <span className="mr-3 font-semibold text-white/80">{getOptionLetter(oIndex)}.</span> 
+                      <span className="mr-3 font-semibold text-white/80">{getOptionLetter(oIndex)}.</span>
                       {opt}
                     </span>
                     {isCorrect && <CheckCircle className="h-5 w-5 shrink-0 text-emerald-300" />}
@@ -72,7 +64,7 @@ export default function QuizEngine({ questions }: QuizEngineProps) {
                 );
               })}
             </div>
-            
+
             {isAnswered && (
               <div className="mt-4 border-t border-white/10 pt-4 text-sm">
                 {selectedIndex === String(correctIndex) ? (

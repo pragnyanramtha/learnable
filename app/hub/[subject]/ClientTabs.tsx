@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import MarkdownReader from '@/components/MarkdownReader';
-import QuizEngine, { QuizQuestion } from '@/components/QuizEngine';
+import QuizEngine from '@/components/QuizEngine';
+import type { QuizQuestion } from '@/lib/types';
 
 interface ClientTabsProps {
   contentStr: string;

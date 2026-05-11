@@ -3,14 +3,15 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Clock, BookOpen } from 'lucide-react';
+import { siteConfig } from '@/lib/config';
+
+const navItems = [
+  { label: 'Timeline', href: '/', icon: Clock },
+  { label: 'Subject Hub', href: '/hub', icon: BookOpen },
+];
 
 export default function Navigation() {
   const pathname = usePathname();
-
-  const navItems = [
-    { label: 'Timeline', href: '/', icon: Clock },
-    { label: 'Subject Hub', href: '/hub', icon: BookOpen }
-  ];
 
   return (
     <>
@@ -19,9 +20,9 @@ export default function Navigation() {
           {navItems.map((item) => {
             const isActive = pathname === item.href || (pathname.startsWith('/hub') && item.href === '/hub');
             const Icon = item.icon;
-            
+
             return (
-              <Link 
+              <Link
                 key={item.href}
                 href={item.href}
                 className={`flex flex-col items-center justify-center gap-1 transition-colors ${
@@ -38,21 +39,21 @@ export default function Navigation() {
 
       <nav className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-black border-r border-white/10 flex-col py-8 px-4 z-50">
         <div className="mb-12 px-4">
-          <h2 className="text-xl font-bold tracking-tight text-white">MRVC Plat.</h2>
-          <p className="text-xs text-neutral-500 mt-1">Student Portal</p>
+          <h2 className="text-xl font-bold tracking-tight text-white">{siteConfig.shortName}</h2>
+          <p className="text-xs text-neutral-500 mt-1">{siteConfig.tagline}</p>
         </div>
         <div className="flex flex-col gap-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href || (pathname.startsWith('/hub') && item.href === '/hub');
             const Icon = item.icon;
-            
+
             return (
-              <Link 
+              <Link
                 key={item.href}
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                  isActive 
-                    ? 'bg-white/10 text-white font-medium' 
+                  isActive
+                    ? 'bg-white/10 text-white font-medium'
                     : 'text-neutral-400 hover:text-white hover:bg-white/5'
                 }`}
               >
