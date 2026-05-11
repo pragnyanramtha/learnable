@@ -1,7 +1,7 @@
-# MRVC Student Group Platform Plan
+# ABLE Platform Plan
 
 ## Overview
-The MRVC platform is a unified, mobile-optimized hub to solve the issue of scattered educational resources. It centralizes exam timelines, direct markdown-rendered reading materials, PDF downloads, and interactive immediate-feedback quizzes. The primary goal is delivering an unparalleled, native reading and study experience on mobile devices. 
+The ABLE platform is a unified, mobile-optimized hub to solve the issue of scattered educational resources. It centralizes class timelines, direct markdown-rendered reading materials, PDF downloads, and interactive immediate-feedback quizzes. The primary goal is delivering an accessible, native reading and study experience on mobile devices. 
 
 ## Project Type
 WEB
@@ -22,7 +22,7 @@ WEB
 ## File Structure
 ```
 ├── app
-│   ├── page.tsx           # Home (Timeline for upcoming exams)
+│   ├── page.tsx           # Home (Timeline for upcoming classes)
 │   ├── hub                # Reading Materials & Question Banks
 │   │   ├── page.tsx       # Subject Selector
 │   │   ├── [subject]      

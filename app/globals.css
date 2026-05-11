@@ -3,14 +3,26 @@
 @import "tailwindcss";
 
 :root {
-  /* PURE DARK SYSTEM / HIGHEST CONTRAST */
-  --background: #000000;
-  --foreground: #FFFFFF;
-  --primary: #FFFFFF;
-  --secondary: #111111;
-  --accent: #E5E5E5;
-  --muted: #888888;
-  --border: #222222;
+  --background: #07172d;
+  --foreground: #f8fbff;
+  --primary: #f4c851;
+  --secondary: #0d2240;
+  --accent: #123158;
+  --muted: #b5c5d8;
+  --border: rgba(255, 255, 255, 0.12);
+  --color-bg-primary: #07172d;
+  --color-bg-secondary: #0d2240;
+  --color-bg-elevated: rgba(18, 49, 88, 0.55);
+  --color-bg-soft: rgba(255, 255, 255, 0.04);
+  --color-action-primary: #f4c851;
+  --color-action-primary-hover: #f7d772;
+  --color-ink-strong: #091727;
+  --color-text-primary: #f8fbff;
+  --color-text-secondary: #b5c5d8;
+  --color-text-muted: #8fa6c0;
+  --color-border-strong: rgba(244, 200, 81, 0.28);
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-body: var(--font-sans), "Aptos", "Segoe UI", system-ui, sans-serif;
 }
 
 @theme inline {
@@ -30,46 +42,85 @@
 html {
   color-scheme: dark;
   background-color: var(--background);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top, rgba(244, 200, 81, 0.12), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(66, 117, 185, 0.16), transparent 26%),
+    linear-gradient(180deg, #08162c 0%, #07172d 42%, #091d39 100%);
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
 }
 
-/* Minimalist prose for purely dark contrast */
-.prose {
-  --tw-prose-body: var(--muted);
-  --tw-prose-headings: var(--foreground);
-  --tw-prose-lead: var(--muted);
-  --tw-prose-links: var(--foreground);
-  --tw-prose-bold: var(--foreground);
-  --tw-prose-counters: var(--muted);
-  --tw-prose-bullets: var(--muted);
-  --tw-prose-hr: var(--border);
-  --tw-prose-quotes: var(--foreground);
-  --tw-prose-quote-borders: var(--border);
-  --tw-prose-captions: var(--muted);
-  --tw-prose-code: var(--foreground);
-  --tw-prose-pre-code: var(--muted);
-  --tw-prose-pre-bg: var(--secondary);
-  --tw-prose-th-borders: var(--border);
-  --tw-prose-td-borders: var(--border);
-}
-.prose a {
-  text-decoration: underline;
-  text-decoration-color: var(--muted);
-  text-underline-offset: 4px;
-}
-.prose a:hover {
-  text-decoration-color: var(--foreground);
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Bottom safe-area padding for mobile navigation */
+::selection {
+  background: rgba(244, 200, 81, 0.3);
+  color: var(--color-text-primary);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.surface-panel {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 70px -42px rgba(0, 0, 0, 0.75);
+}
+
+.surface-soft {
+  background: var(--color-bg-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.prose {
+  --tw-prose-body: var(--color-text-secondary);
+  --tw-prose-headings: var(--color-text-primary);
+  --tw-prose-lead: var(--color-text-secondary);
+  --tw-prose-links: var(--color-action-primary);
+  --tw-prose-bold: var(--color-text-primary);
+  --tw-prose-counters: var(--color-text-muted);
+  --tw-prose-bullets: var(--color-action-primary);
+  --tw-prose-hr: rgba(255, 255, 255, 0.12);
+  --tw-prose-quotes: var(--color-text-primary);
+  --tw-prose-quote-borders: var(--color-border-strong);
+  --tw-prose-captions: var(--color-text-muted);
+  --tw-prose-code: var(--color-text-primary);
+  --tw-prose-pre-code: #e4edf8;
+  --tw-prose-pre-bg: rgba(2, 11, 24, 0.62);
+  --tw-prose-th-borders: rgba(255, 255, 255, 0.14);
+  --tw-prose-td-borders: rgba(255, 255, 255, 0.1);
+}
+
+.prose :where(h1, h2, h3) {
+  font-family: var(--font-display);
+}
+
+.prose a {
+  text-decoration: underline;
+  text-decoration-color: rgba(244, 200, 81, 0.45);
+  text-underline-offset: 4px;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-action-primary);
+}
+
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom, 16px);
 }

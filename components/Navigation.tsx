@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Clock, BookOpen } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Clock } from 'lucide-react';
 import { siteConfig } from '@/lib/config';
+import Button from '@/components/ui/Button';
 
 const navItems = [
   { label: 'Timeline', href: '/', icon: Clock },
@@ -15,8 +16,8 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-black/80 backdrop-blur-xl border-t border-white/10 px-6 py-2 pb-safe">
-        <div className="flex items-center justify-around h-14">
+      <nav className="surface-panel fixed bottom-3 left-3 right-3 z-50 rounded-[2rem] px-4 py-2 pb-safe backdrop-blur-xl md:hidden">
+        <div className="flex items-center justify-around gap-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href || (pathname.startsWith('/hub') && item.href === '/hub');
             const Icon = item.icon;
@@ -25,22 +26,27 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center justify-center gap-1 transition-colors ${
-                  isActive ? 'text-white' : 'text-neutral-500 hover:text-neutral-300'
+                className={`flex min-w-0 flex-1 flex-col items-center justify-center rounded-full px-2 py-3 text-center transition-all ${
+                  isActive
+                    ? 'bg-[color:rgba(244,200,81,0.16)] text-[var(--color-action-primary)]'
+                    : 'text-[var(--color-text-muted)] hover:bg-white/[0.04] hover:text-[var(--color-text-primary)]'
                 }`}
+                aria-current={isActive ? 'page' : undefined}
               >
                 <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-2'}`} />
-                <span className="text-[10px] font-medium">{item.label}</span>
+                <span className="mt-1 text-[10px] font-semibold tracking-[0.18em] uppercase">{item.label}</span>
               </Link>
             );
           })}
         </div>
       </nav>
 
-      <nav className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-black border-r border-white/10 flex-col py-8 px-4 z-50">
-        <div className="mb-12 px-4">
-          <h2 className="text-xl font-bold tracking-tight text-white">{siteConfig.shortName}</h2>
-          <p className="text-xs text-neutral-500 mt-1">{siteConfig.tagline}</p>
+      <nav className="hidden md:flex fixed left-4 top-4 bottom-4 w-64 rounded-[2rem] surface-panel flex-col px-5 py-6 z-50">
+        <div className="mb-10 space-y-4 px-2">
+          <div>
+            <p className="font-display text-3xl leading-none text-[var(--color-text-primary)]">{siteConfig.shortName}</p>
+            <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{siteConfig.tagline}</p>
+          </div>
         </div>
         <div className="flex flex-col gap-2">
           {navItems.map((item) => {
@@ -51,17 +57,33 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 rounded-full px-4 py-3 transition-all ${
                   isActive
-                    ? 'bg-white/10 text-white font-medium'
-                    : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-[color:rgba(244,200,81,0.16)] text-[var(--color-action-primary)] font-medium'
+                    : 'text-[var(--color-text-secondary)] hover:bg-white/[0.04] hover:text-[var(--color-text-primary)]'
                 }`}
+                aria-current={isActive ? 'page' : undefined}
               >
                 <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-2'}`} />
                 <span className="text-sm">{item.label}</span>
               </Link>
             );
           })}
+        </div>
+        <div className="mt-auto rounded-[1.75rem] border border-[color:rgba(244,200,81,0.18)] bg-[linear-gradient(180deg,rgba(244,200,81,0.12),rgba(255,255,255,0.02))] p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-action-primary)]">Student Access</p>
+          <p className="mt-2 text-sm leading-6 text-[var(--color-text-secondary)]">
+            Class timelines, study notes, and quizzes in one focused workspace.
+          </p>
+          <Button
+            href="/hub"
+            variant="outline"
+            size="sm"
+            className="mt-4 w-full justify-between"
+          >
+            Open Hub
+            <ArrowUpRight className="h-4 w-4" />
+          </Button>
         </div>
       </nav>
     </>

@@ -21,10 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="bg-black text-white font-sans selection:bg-white/30 overflow-x-hidden">
+      <body className="overflow-x-hidden text-white">
         <Navigation />
-        <main className="md:ml-64 pb-24 md:pb-0 min-h-screen overflow-x-hidden">
-          <div className="max-w-4xl mx-auto px-4 py-8 sm:px-8">
+        <main className="min-h-screen overflow-x-hidden pb-24 md:ml-72 md:pb-0">
+          <div className="mx-auto max-w-6xl px-4 py-6 sm:px-8 sm:py-8">
             {children}
           </div>
         </main>

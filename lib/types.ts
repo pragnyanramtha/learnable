@@ -5,7 +5,7 @@ export interface SubjectConfig {
   icon?: string;
 }
 
-export interface ExamEvent {
+export interface ClassEvent {
   date: string;
   day: string;
   time: string;
@@ -19,4 +19,5 @@ export interface QuizQuestion {
   options: string[];
   correctAnswer: string;
   correctLetter: string;
+  explanation?: string;
 }

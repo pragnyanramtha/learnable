@@ -28,8 +28,9 @@ export function parseQuizQuestions(subject: string, quizStr: string): QuizQuesti
     const trimmedLines = blockLines.map((line) => line.trim()).filter(Boolean);
     const optionsLine = trimmedLines.find((line) => line.includes('|'));
     const answerLine = trimmedLines.find((line) => /^<Answer:/i.test(line));
+    const explanationLine = trimmedLines.find((line) => /^<Explanation:/i.test(line));
     const extraQuestionLines = trimmedLines.filter(
-      (line) => !line.includes('|') && !/^<Answer:/i.test(line)
+      (line) => !line.includes('|') && !/^<Answer:/i.test(line) && !/^<Explanation:/i.test(line)
     );
 
     questionText = [questionText, ...extraQuestionLines].join(' ').trim();
@@ -80,12 +81,17 @@ export function parseQuizQuestions(subject: string, quizStr: string): QuizQuesti
       correctAnswer = options[answerIndex];
     }
 
+    const explanation = explanationLine
+      ?.match(/^<Explanation:\s*(.+?)>\s*$/i)?.[1]
+      ?.trim();
+
     quizQuestions.push({
       id: `${subject}-${quizQuestions.length + 1}`,
       question: questionText,
       options,
       correctLetter,
       correctAnswer,
+      explanation,
     });
 
     questionText = '';
