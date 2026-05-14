@@ -1,9 +1,5 @@
 # Lecture 2: Loops
 
-Source: [CS50's Introduction to Programming with Python, Lecture 2 notes](https://cs50.harvard.edu/python/notes/2/)
-
-These notes follow the structure of CS50 Python Lecture 2. The main idea is that loops let a program repeat work without copying and pasting the same line again and again.
-
 ## Loops
 
 A loop is a way to do something more than once. Before using a loop, you could write the same instruction repeatedly:

@@ -1,7 +1,5 @@
 # Lecture 1: Conditionals
 
-Source: [CS50's Introduction to Programming with Python, Lecture 1 Notes](https://cs50.harvard.edu/python/notes/1/)
-
 ## Conditionals
 
 Conditionals let a program ask questions and choose what to do next. Instead of always running the same instructions in the same order, a program can take one path when a condition is true and another path when it is false.
