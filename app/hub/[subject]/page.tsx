@@ -2,9 +2,13 @@ import fs from 'fs/promises';
 import path from 'path';
 import ClientTabs from './ClientTabs';
 import TopBar from '@/components/TopBar';
-import { getSubjectTitle } from '@/lib/config';
+import { getSubjectTitle, subjects } from '@/lib/config';
 import { parseQuizQuestions } from './quizParser';
 import type { QuizQuestion } from '@/lib/types';
+
+export function generateStaticParams() {
+  return subjects.map((s) => ({ subject: s.id }));
+}
 
 interface PageProps {
   params: Promise<{ subject: string }>;
