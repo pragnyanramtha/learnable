@@ -1,7 +1,5 @@
 # Lecture 1: Conditionals
 
-Source: [CS50's Introduction to Programming with Python, Lecture 1 Notes](https://cs50.harvard.edu/python/notes/1/)
-
 ## Conditionals
 
 Conditionals let a program ask questions and choose what to do next. Instead of always running the same instructions in the same order, a program can take one path when a condition is true and another path when it is false.
@@ -23,7 +21,7 @@ The double equal sign matters. In Python, `=` assigns a value to a variable, whi
 
 ## if Statements
 
-An `if` statement runs an indented block of code only when its condition is true. In the lecture, CS50 starts with a file named `compare.py`:
+An `if` statement runs an indented block of code only when its condition is true. A small comparison program can start like this:
 
 ```python
 x = int(input("What's x? "))
@@ -107,7 +105,7 @@ The `if` / `elif` / `else` pattern is useful when you want exactly one branch to
 
 The keyword `or` combines conditions. A condition using `or` is true when at least one side is true.
 
-CS50 next changes the comparison program so it asks whether `x` is less than `y` or greater than `y`:
+The comparison program can also ask whether `x` is less than `y` or greater than `y`:
 
 ```python
 x = int(input("What's x? "))
@@ -157,7 +155,7 @@ This version is just as valid. It emphasizes the equality comparison instead of 
 
 The keyword `and` also combines conditions, but it is stricter than `or`. A condition using `and` is true only when both sides are true.
 
-CS50 introduces `and` with a grading example in `grade.py`:
+A grading example is a good place to use `and`:
 
 ```python
 score = int(input("Score: "))
@@ -231,7 +229,7 @@ The modulo operator, `%`, gives the remainder after division. It is especially u
 - `4 % 2` is `0`, because `4` divides evenly by `2`.
 - `3 % 2` is `1`, because dividing `3` by `2` leaves a remainder.
 
-CS50 uses this idea in `parity.py`:
+This idea works well in a parity checker:
 
 ```python
 x = int(input("What's x? "))
@@ -246,7 +244,7 @@ If `x % 2 == 0`, then `x` is even. Otherwise, `x` is odd.
 
 ## Creating Our Own Parity Function
 
-As programs grow, it is useful to move repeated or meaningful logic into functions. CS50 rewrites the parity example with a helper function named `is_even`:
+As programs grow, it is useful to move repeated or meaningful logic into functions. The parity example can be rewritten with a helper function named `is_even`:
 
 ```python
 def main():
@@ -290,7 +288,7 @@ def is_even(n):
 
 ## Pythonic
 
-"Pythonic" code uses patterns and idioms that fit Python's style. CS50 shows that `is_even` can be shortened while preserving the same behavior.
+"Pythonic" code uses patterns and idioms that fit Python's style. `is_even` can be shortened while preserving the same behavior.
 
 First, the function can use a conditional expression:
 
@@ -342,7 +340,7 @@ This is the most direct version. Instead of manually returning `True` or `False`
 
 `match` is another way to conditionally run code. It is useful when one value needs to be compared against several possible cases.
 
-CS50 introduces the idea with a Hogwarts house example. First, it can be written with `if`, `elif`, and `else`:
+One example can be written with `if`, `elif`, and `else`:
 
 ```python
 name = input("What's your name? ")

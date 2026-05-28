@@ -4,9 +4,7 @@
 
 An algorithm is a clear set of steps for solving a problem. Some algorithms are simple but slow. Others need more setup but become much faster as the input grows.
 
-This unit adapts the CS50x Lecture 3 algorithms material into Python. The original lecture uses C examples; here, the ideas are shown with Python lists, functions, dictionaries, and recursion.
-
-Source: [CS50x Lecture 3 notes](https://cs50.harvard.edu/x/notes/3/)
+The ideas here are shown with Python lists, functions, dictionaries, and recursion.
 
 ## Why efficiency matters
 
@@ -140,7 +138,7 @@ Constants are usually dropped. An algorithm that takes about `n / 2` steps is st
 
 ## Phone book data in Python
 
-CS50 uses C structs to group related values. In Python, a simple way to group a name and number is a dictionary.
+Some languages use custom record-like types to group related values. In Python, a simple way to group a name and number is a dictionary.
 
 Code example:
 

@@ -1,8 +1,6 @@
 # Lecture 2: Loops
 
-Source: [CS50's Introduction to Programming with Python, Lecture 2 notes](https://cs50.harvard.edu/python/notes/2/)
-
-These notes follow the structure of CS50 Python Lecture 2. The main idea is that loops let a program repeat work without copying and pasting the same line again and again.
+The main idea is that loops let a program repeat work without copying and pasting the same line again and again.
 
 ## Loops
 
@@ -169,7 +167,7 @@ In `get_number`, `return n` sends the valid number back to the caller. Returning
 
 ## More About Lists
 
-A list stores multiple values in order. CS50 introduces this with students from Hogwarts:
+A list stores multiple values in order. A simple student list can look like this:
 
 ```python
 students = ["Hermione", "Harry", "Ron"]
@@ -319,9 +317,9 @@ for student in students:
 
 On each iteration, `student` is one dictionary from the list. Expressions like `student["name"]` and `student["house"]` retrieve values from that dictionary.
 
-## Mario
+## Text blocks
 
-CS50 often uses Mario-style blocks to practice loops. A text version of vertical blocks could start with repeated print calls:
+Text blocks are a useful way to practice loops. A vertical block could start with repeated print calls:
 
 ```python
 print("#")
