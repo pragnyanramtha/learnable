@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className="overflow-x-hidden text-white">
         <Navigation />
         <main className="min-h-screen overflow-x-hidden pb-24 pt-22 md:ml-72 md:pb-0 md:pt-0">
-          <div className="mx-auto max-w-6xl px-4 py-6 sm:px-8 sm:py-8">
+          <div className="mx-auto max-w-[92rem] px-4 py-6 sm:px-8 sm:py-8">
             {children}
           </div>
         </main>

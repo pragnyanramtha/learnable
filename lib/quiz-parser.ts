@@ -1,4 +1,4 @@
-import type { QuizQuestion } from '@/lib/types';
+import type { QuizQuestion } from './types';
 
 function normalizeQuizText(value: string) {
   return value
@@ -26,14 +26,45 @@ export function parseQuizQuestions(subject: string, quizStr: string): QuizQuesti
     if (!questionText) return;
 
     const trimmedLines = blockLines.map((line) => line.trim()).filter(Boolean);
+    const typeLine = trimmedLines.find((line) => /^<Type:\s*Code\s*>\s*$/i.test(line));
+    const instructionsLine = trimmedLines.find((line) => /^<Instructions:/i.test(line));
     const optionsLine = trimmedLines.find((line) => line.includes('|'));
     const answerLine = trimmedLines.find((line) => /^<Answer:/i.test(line));
     const explanationLine = trimmedLines.find((line) => /^<Explanation:/i.test(line));
     const extraQuestionLines = trimmedLines.filter(
-      (line) => !line.includes('|') && !/^<Answer:/i.test(line) && !/^<Explanation:/i.test(line)
+      (line) =>
+        !line.includes('|') &&
+        !/^<Type:/i.test(line) &&
+        !/^<Instructions:/i.test(line) &&
+        !/^<Answer:/i.test(line) &&
+        !/^<Explanation:/i.test(line)
     );
 
     questionText = [questionText, ...extraQuestionLines].join(' ').trim();
+
+    if (typeLine) {
+      const instructions = instructionsLine
+        ?.match(/^<Instructions:\s*(.+?)>\s*$/i)?.[1]
+        ?.trim();
+      const explanation = explanationLine
+        ?.match(/^<Explanation:\s*(.+?)>\s*$/i)?.[1]
+        ?.trim();
+
+      quizQuestions.push({
+        id: `${subject}-${quizQuestions.length + 1}`,
+        type: 'code',
+        question: questionText,
+        options: [],
+        correctLetter: '',
+        correctAnswer: '',
+        explanation,
+        instructions,
+      });
+
+      questionText = '';
+      blockLines = [];
+      return;
+    }
 
     if (!optionsLine || !answerLine) {
       questionText = '';
@@ -87,6 +118,7 @@ export function parseQuizQuestions(subject: string, quizStr: string): QuizQuesti
 
     quizQuestions.push({
       id: `${subject}-${quizQuestions.length + 1}`,
+      type: 'multiple-choice',
       question: questionText,
       options,
       correctLetter,

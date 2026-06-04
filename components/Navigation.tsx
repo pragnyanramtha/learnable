@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowUpRight, BookOpen, Clock, ExternalLink, House } from 'lucide-react';
+import { ArrowUpRight, BookOpen, ClipboardCheck, Clock, ExternalLink, House } from 'lucide-react';
 import { siteConfig } from '@/lib/config';
 import Button from '@/components/ui/Button';
 import ContrastToggle from '@/components/ContrastToggle';
@@ -11,6 +11,7 @@ import ContrastToggle from '@/components/ContrastToggle';
 const navItems = [
   { label: 'Timeline', href: '/', icon: Clock, ariaLabel: 'Open class timeline' },
   { label: 'Hub', href: '/hub', icon: BookOpen, ariaLabel: 'Open subject hub' },
+  { label: 'Exam', href: '/examportal', icon: ClipboardCheck, ariaLabel: 'Open exam portal' },
 ];
 
 export default function Navigation() {

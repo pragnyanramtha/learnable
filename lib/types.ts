@@ -15,9 +15,11 @@ export interface ClassEvent {
 
 export interface QuizQuestion {
   id: string;
+  type: 'multiple-choice' | 'code';
   question: string;
   options: string[];
   correctAnswer: string;
   correctLetter: string;
   explanation?: string;
+  instructions?: string;
 }

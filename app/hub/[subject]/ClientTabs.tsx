@@ -30,6 +30,7 @@ export default function ClientTabs({ contentStr, quizQuestions, subjectTitle }: 
 
       <div className="surface-panel flex w-full flex-wrap gap-3 rounded-full p-2" role="tablist" aria-label="Subject content tabs">
         <button
+          id="reading-tab"
           onClick={() => setActiveTab('reading')}
           role="tab"
           aria-selected={activeTab === 'reading'}
@@ -45,6 +46,7 @@ export default function ClientTabs({ contentStr, quizQuestions, subjectTitle }: 
           Reading Material
         </button>
         <button
+          id="quiz-tab"
           onClick={() => setActiveTab('quiz')}
           role="tab"
           aria-selected={activeTab === 'quiz'}
@@ -61,21 +63,29 @@ export default function ClientTabs({ contentStr, quizQuestions, subjectTitle }: 
         </button>
       </div>
 
-      <div
-        id={activeTab === 'reading' ? 'reading-panel' : 'quiz-panel'}
+      <section
+        id="reading-panel"
         role="tabpanel"
+        aria-labelledby="reading-tab"
+        hidden={activeTab !== 'reading'}
         className="min-h-[50vh] w-full"
       >
-        {activeTab === 'reading' ? (
-          contentStr ? (
-            <MarkdownReader content={contentStr} />
-          ) : (
-            <div className="surface-panel rounded-[2rem] p-6 text-[var(--color-text-secondary)]">No reading material available for this subject yet.</div>
-          )
+        {contentStr ? (
+          <MarkdownReader content={contentStr} />
         ) : (
-          <QuizEngine questions={quizQuestions} />
+          <div className="surface-panel rounded-[2rem] p-6 text-[var(--color-text-secondary)]">No reading material available for this subject yet.</div>
         )}
-      </div>
+      </section>
+
+      <section
+        id="quiz-panel"
+        role="tabpanel"
+        aria-labelledby="quiz-tab"
+        hidden={activeTab !== 'quiz'}
+        className="min-h-[50vh] w-full"
+      >
+        <QuizEngine questions={quizQuestions} />
+      </section>
     </section>
   );
 }

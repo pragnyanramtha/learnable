@@ -3,7 +3,7 @@ import path from 'path';
 import ClientTabs from './ClientTabs';
 import TopBar from '@/components/TopBar';
 import { getSubjectTitle, subjects } from '@/lib/config';
-import { parseQuizQuestions } from './quizParser';
+import { parseQuizQuestions } from '@/lib/quiz-parser';
 import type { QuizQuestion } from '@/lib/types';
 
 export function generateStaticParams() {

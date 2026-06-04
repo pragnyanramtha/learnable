@@ -91,6 +91,7 @@ button {
 
 a:focus-visible,
 button:focus-visible,
+input[type='radio']:focus-visible,
 [role='tab']:focus-visible,
 [tabindex='0']:focus-visible {
   outline: none;
@@ -107,7 +108,7 @@ button:focus-visible,
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .surface-panel {
