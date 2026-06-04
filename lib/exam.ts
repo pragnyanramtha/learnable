@@ -1,8 +1,12 @@
 import type { QuizQuestion } from './types';
+import {
+  CODE_SIMILARITY_PASS_THRESHOLD,
+  getCodeSimilarity,
+} from './code-similarity';
 
 export const EXAM_DURATION_SECONDS = 30 * 60;
 export const HARD_MCQ_QUESTIONS = 20;
-export const CODE_WRITING_QUESTIONS = 3;
+export const CODE_WRITING_QUESTIONS = 10;
 export const TOTAL_EXAM_QUESTIONS = HARD_MCQ_QUESTIONS + CODE_WRITING_QUESTIONS;
 
 export type ExamDifficulty = 'Easy' | 'Medium' | 'Hard';
@@ -35,6 +39,7 @@ export interface ExamResult {
   attempted: number;
   candidate: CandidateDetails;
   codeAttempted: number;
+  codeCorrect: number;
   codeResponses: StoredCodeResponse[];
   correct: number;
   id: string;
@@ -50,6 +55,7 @@ export interface StoredExamSubmission {
   attempted: number;
   candidate: CandidateDetails;
   codeAttempted: number;
+  codeCorrect: number;
   codeResponses: StoredCodeResponse[];
   correct: number;
   id: string;
@@ -70,8 +76,11 @@ export interface ExamSubmissionReceipt {
 
 export interface StoredCodeResponse {
   answer: string;
+  passed: boolean;
   question: string;
   questionId: string;
+  requiredSimilarity: number;
+  similarity: number;
   subjectTitle: string;
 }
 
@@ -122,22 +131,45 @@ export function calculateExamResult(
     .filter((question) => question.type === 'code')
     .map((question) => ({
       answer: codeAnswers[question.id]?.trim() ?? '',
+      passed: false,
       question: question.question,
       questionId: question.id,
+      requiredSimilarity: CODE_SIMILARITY_PASS_THRESHOLD,
+      similarity: 0,
       subjectTitle: question.subjectTitle,
     }));
+  let codeCorrect = 0;
+  for (const response of codeResponses) {
+    const question = questions.find((item) => item.id === response.questionId);
+    const similarity = getCodeSimilarity(response.answer, question?.correctAnswer ?? '');
+    const passed = Boolean(response.answer && similarity >= CODE_SIMILARITY_PASS_THRESHOLD);
+
+    response.similarity = similarity;
+    response.passed = passed;
+
+    if (passed) {
+      codeCorrect += 1;
+      correct += 1;
+    }
+  }
   const codeAttempted = codeResponses.filter((response) => response.answer).length;
+  const codeScore = questions
+    .filter((question) => question.type === 'code')
+    .filter((question) => codeResponses.find((response) => response.questionId === question.id)?.passed)
+    .reduce((total, question) => total + question.marks, 0);
+  const finalScore = score + codeScore;
 
   return {
     attempted,
     candidate,
     codeAttempted,
+    codeCorrect,
     codeResponses,
     correct,
     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
     integrity,
-    percentage: totalMarks > 0 ? Math.round((score / totalMarks) * 10000) / 100 : 0,
-    score,
+    percentage: totalMarks > 0 ? Math.round((finalScore / totalMarks) * 10000) / 100 : 0,
+    score: finalScore,
     submittedAt: new Date().toISOString(),
     totalMarks,
     totalQuestions: questions.length,
@@ -149,6 +181,7 @@ export function toStoredExamSubmission(result: ExamResult): StoredExamSubmission
     attempted: result.attempted,
     candidate: result.candidate,
     codeAttempted: result.codeAttempted,
+    codeCorrect: result.codeCorrect,
     codeResponses: result.codeResponses,
     correct: result.correct,
     id: result.id,

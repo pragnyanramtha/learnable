@@ -115,3 +115,45 @@ Write a `BankAccount` class with safe deposit and withdrawal behavior.
 Write `LineItem` and `ShoppingCart` classes.
 <Instructions: A line item should know its own total from price and quantity. A cart should contain line items, add new items, and calculate the full cart total. Include one example cart with at least three items.>
 <Explanation: A complete answer should use composition because a cart has line items.>
+
+**24. Code writing: Library book checkout**
+<Type: Code>
+Write a `LibraryBook` class that tracks whether a book is available.
+<Instructions: Include `title`, `author`, `borrower`, `check_out`, `return_book`, and `is_available`. Reject checkout if the book already has a borrower. Show one checkout and one return example.>
+<Explanation: A complete answer should keep book state and checkout rules inside the class.>
+
+**25. Code writing: Restaurant order status**
+<Type: Code>
+Write a `RestaurantOrder` class that protects valid order states.
+<Instructions: Include a class attribute for allowed statuses, a table number, an item list, `add_item`, and `update_status`. Prevent adding items after the order is no longer `new`, and reject unknown statuses with `ValueError`.>
+<Explanation: A complete answer should use validation to prevent impossible order states.>
+
+**26. Code writing: Ride-share fare**
+<Type: Code>
+Write a `RideShareTrip` class that calculates a trip fare.
+<Instructions: Include class attributes for base fare and price per kilometer, validate that distance is positive, store the rider name and distance, and write a `fare` method that returns the calculated amount.>
+<Explanation: A complete answer should use class attributes for shared fare rules and an instance method for the trip-specific fare.>
+
+**27. Code writing: Support ticket escalation**
+<Type: Code>
+Write a `SupportTicket` class for a helpdesk workflow.
+<Instructions: Include `customer`, `issue`, `priority`, and `closed`. Add `escalate` and `close` methods. `escalate` should raise `ValueError` if the ticket is already closed.>
+<Explanation: A complete answer should protect workflow rules inside the object.>
+
+**28. Code writing: Inventory item reorder**
+<Type: Code>
+Write an `InventoryItem` class that tracks stock and reorder status.
+<Instructions: Include `name`, `quantity`, `reorder_at`, `sell`, `restock`, and `needs_reorder`. Reject selling more than the current quantity and reject non-positive sell or restock counts.>
+<Explanation: A complete answer should update quantity safely and calculate reorder status from object state.>
+
+**29. Code writing: Notifications with inheritance**
+<Type: Code>
+Write a notification model using inheritance.
+<Instructions: Create a base `Notification` class with `recipient`, `message`, and a `send` method that raises `NotImplementedError`. Then create `EmailNotification` and `SmsNotification` subclasses that override `send`. Show a loop that sends both kinds.>
+<Explanation: A complete answer should demonstrate inheritance and polymorphism through a shared `send` method.>
+
+**30. Code writing: Password and user factory**
+<Type: Code>
+Write `Password` and `User` classes for signup validation.
+<Instructions: `Password` should have a static method `is_strong` that requires at least 8 characters and at least one digit. `User` should validate name, email, and password strength, and include a `from_form` class method that strips input values before creating a user.>
+<Explanation: A complete answer should use a static helper for password rules and a class method as an alternate constructor.>

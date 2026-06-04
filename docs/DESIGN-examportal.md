@@ -31,14 +31,14 @@ Core states:
 
 ## Exam Rules
 
-- 20 hard MCQs followed by 3 code-writing questions.
+- 20 hard MCQs followed by 10 code-writing questions.
 - The current exam source is `public/object-oriented-programming_Q.md`.
 - One correct answer per MCQ.
 - One auto-graded mark per MCQ.
-- Code-writing questions are saved for instructor review and are not auto-graded by the website.
+- One auto-graded mark per code-writing question that passes the server-side similarity check.
 - No answer feedback before final submission.
 - Unanswered questions receive zero marks.
-- Marks are calculated as `correct MCQs / auto-graded MCQ marks`.
+- Marks are calculated as `correct MCQs plus similarity-passed code answers / total marks`.
 - Students do not see correct answers after submission.
 - Basic integrity guard records warnings for tab switching, focus loss, exiting fullscreen, and copy/paste/context-menu attempts.
 
@@ -50,7 +50,8 @@ Current Vercel implementation:
 - A private Vercel Blob store named `learnable-exam-results` stores immutable submission JSON files.
 - Browser submissions send selected option indexes and code-task text to `POST /api/exam-submissions`.
 - The API route grades against server-side syllabus files and returns only a submission receipt.
-- Saved fields: candidate name, email, optional phone, score, total auto-graded marks, percentage, correct count, attempted count, total question count, submitted timestamp, integrity warning summary, and code-task answers.
+- Code task grading compares submitted code to server-side reference solutions with a deterministic token and structure similarity score.
+- Saved fields: candidate name, email, optional phone, score, total auto-graded marks, percentage, correct count, attempted count, total question count, submitted timestamp, integrity warning summary, code-task answers, and similarity results.
 - Raw selected answers are not written to storage.
 
 Future relational result collection:

@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { subjects } from './config';
+import { codeReferenceAnswers } from './exam-code-references';
 import {
   CODE_WRITING_QUESTIONS,
   type ExamQuestion,
@@ -33,8 +34,9 @@ export async function getExamQuestions(): Promise<ExamQuestion[]> {
     .slice(0, CODE_WRITING_QUESTIONS)
     .map<ExamQuestion>((question) => ({
       ...question,
+      correctAnswer: codeReferenceAnswers[question.id] ?? '',
       difficulty: 'Hard',
-      marks: 0,
+      marks: 1,
       subjectId: subject.id,
       subjectTitle: subject.title,
     }));

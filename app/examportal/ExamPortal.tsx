@@ -292,7 +292,7 @@ export default function ExamPortal({ questions }: ExamPortalProps) {
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--color-text-secondary)]">
           The test has {mcqCount} hard multiple-choice questions followed by {codeQuestionCount} code-writing tasks.
-          Multiple-choice marks are auto-calculated after final submission. Code answers are saved for instructor review.
+          Multiple-choice marks are auto-calculated after final submission. Code answers are graded by similarity against reference solutions.
         </p>
       </div>
 
@@ -366,7 +366,7 @@ export default function ExamPortal({ questions }: ExamPortalProps) {
               </div>
               <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4">
                 <p className="text-sm font-semibold text-[var(--color-text-primary)]">{totalMarks} auto-graded marks</p>
-                <p className="mt-1 text-sm text-[var(--color-text-secondary)]">One mark for each correct MCQ; code tasks are reviewed manually</p>
+                <p className="mt-1 text-sm text-[var(--color-text-secondary)]">One mark for each correct MCQ and each code answer that passes similarity grading</p>
               </div>
             </div>
 
@@ -376,13 +376,7 @@ export default function ExamPortal({ questions }: ExamPortalProps) {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em]">Stored Centrally</p>
               </div>
               <p className="mt-3 text-sm leading-7 text-[var(--color-text-secondary)]">
-                Name, contact fields, MCQ score, submission time, integrity warnings, and code-task answers are stored for review.
-              </p>
-            </div>
-            <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-action-primary)]">Accessible Answering</p>
-              <p className="mt-3 text-sm leading-7 text-[var(--color-text-secondary)]">
-                MCQ answers are radio buttons. Use Tab to reach the answer group, arrow keys to move between options, and Space or Enter to select. The page announces the selected answer.
+                Name, contact fields, score, submission time, integrity warnings, code answers, and code similarity results are stored for review.
               </p>
             </div>
           </aside>
@@ -485,7 +479,7 @@ export default function ExamPortal({ questions }: ExamPortalProps) {
                     {currentQuestion.instructions ?? 'Write Python code that solves the task. Use clear names and include validation when requested.'}
                   </p>
                   <p className="mt-2">
-                    This task is saved for instructor review and is not auto-graded by the website. Do not paste from outside sources during the exam.
+                    This task is graded by similarity against a reference solution after submission. Do not paste from outside sources during the exam.
                   </p>
                 </div>
                 <label htmlFor={`${currentQuestion.id}-code`} className="mt-5 block text-sm font-semibold text-[var(--color-text-secondary)]">
@@ -501,7 +495,7 @@ export default function ExamPortal({ questions }: ExamPortalProps) {
                   aria-describedby={`${currentQuestion.id}-code-help`}
                 />
                 <p id={`${currentQuestion.id}-code-help`} className="mt-3 text-sm leading-7 text-[var(--color-text-secondary)]">
-                  Your code answer is saved while you type and submitted with the exam.
+                  Your code answer is saved while you type and submitted for similarity grading.
                 </p>
               </div>
             ) : (
