@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import CodeEditor from '@/components/CodeEditor';
 import {
   EXAM_DURATION_SECONDS,
   optionLetter,
@@ -482,17 +483,13 @@ export default function ExamPortal({ questions }: ExamPortalProps) {
                     This task is graded by similarity against a reference solution after submission. Do not paste from outside sources during the exam.
                   </p>
                 </div>
-                <label htmlFor={`${currentQuestion.id}-code`} className="mt-5 block text-sm font-semibold text-[var(--color-text-secondary)]">
-                  Python code answer for question {currentIndex + 1}
-                </label>
-                <textarea
+                <CodeEditor
                   id={`${currentQuestion.id}-code`}
                   value={codeAnswers[currentQuestion.id] ?? ''}
-                  onChange={(event) => handleCodeAnswer(currentQuestion.id, event.target.value)}
-                  spellCheck={false}
-                  className="mt-2 min-h-80 w-full resize-y rounded-[1.25rem] border border-white/12 bg-[#071321] p-4 font-mono text-sm leading-7 text-[#e5edf7] outline-none transition-colors focus:border-[var(--color-action-primary)] focus:ring-2 focus:ring-[var(--color-action-primary)]"
-                  placeholder="Write your Python code here."
-                  aria-describedby={`${currentQuestion.id}-code-help`}
+                  onChange={(value) => handleCodeAnswer(currentQuestion.id, value)}
+                  label={`Python code answer for question ${currentIndex + 1}`}
+                  helperText="IDE-style Python editor. Tab indents, Shift plus Tab outdents, Enter keeps indentation, and Control slash toggles comments."
+                  minHeightClassName="min-h-80"
                 />
                 <p id={`${currentQuestion.id}-code-help`} className="mt-3 text-sm leading-7 text-[var(--color-text-secondary)]">
                   Your code answer is saved while you type and submitted for similarity grading.

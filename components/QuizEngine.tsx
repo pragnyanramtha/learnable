@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
 import clsx from 'clsx';
 import type { QuizQuestion } from '@/lib/types';
+import CodeEditor from '@/components/CodeEditor';
 
 interface QuizEngineProps {
   questions: QuizQuestion[];
@@ -93,16 +94,13 @@ export default function QuizEngine({ questions }: QuizEngineProps) {
                   This is a practice text area. It saves only while this page is open and is intended for instructor or self review.
                 </p>
               </div>
-              <label htmlFor={`${q.id}-code`} className="mt-5 block text-sm font-semibold text-[var(--color-text-secondary)]">
-                Python code answer for question {qIndex + 1}
-              </label>
-              <textarea
+              <CodeEditor
                 id={`${q.id}-code`}
                 value={codeAnswers[q.id] ?? ''}
-                onChange={(event) => setCodeAnswers((prev) => ({ ...prev, [q.id]: event.target.value }))}
-                spellCheck={false}
-                className="mt-2 min-h-64 w-full resize-y rounded-[1.25rem] border border-white/12 bg-[#071321] p-4 font-mono text-sm leading-7 text-[#e5edf7] outline-none transition-colors focus:border-[var(--color-action-primary)] focus:ring-2 focus:ring-[var(--color-action-primary)]"
-                placeholder="Write your Python code here."
+                onChange={(value) => setCodeAnswers((prev) => ({ ...prev, [q.id]: value }))}
+                label={`Python code answer for question ${qIndex + 1}`}
+                helperText="IDE-style Python editor. Tab indents, Shift plus Tab outdents, Enter keeps indentation, and Control slash toggles comments."
+                minHeightClassName="min-h-64"
               />
               {q.explanation && (
                 <p className="mt-3 text-sm leading-7 text-[var(--color-text-secondary)]">
