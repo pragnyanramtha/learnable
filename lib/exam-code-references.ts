@@ -1,225 +1,188 @@
 export const codeReferenceAnswers: Record<string, string> = {
-  'object-oriented-programming-21': `
-class Student:
-    allowed_houses = ["Blue", "Green", "Red", "Yellow"]
+  'functions-variables-exam-code': `
+def format_student(name: str, age: int, course: str) -> str:
+    clean_name = name.strip().title()
+    clean_course = course.strip().title()
 
-    def __init__(self, name: str, house: str):
-        if not name:
-            raise ValueError("Missing name")
-        self.name = name
-        self.house = house
+    if not clean_name:
+        raise ValueError("Name is required")
+    if age < 1:
+        raise ValueError("Age must be positive")
+    if not clean_course:
+        raise ValueError("Course is required")
 
-    @property
-    def house(self) -> str:
-        return self._house
+    return f"{clean_name} ({age}) - {clean_course}"
 
-    @house.setter
-    def house(self, value: str) -> None:
-        if value not in self.allowed_houses:
-            raise ValueError("Invalid house")
-        self._house = value
-
-    def __str__(self) -> str:
-        return f"{self.name} from {self.house}"
-
-    @classmethod
-    def from_csv_row(cls, row: str):
-        name, house = row.split(",")
-        return cls(name.strip(), house.strip())
+print(format_student("  priya raman  ", 18, " python "))
+print(format_student("arjun", 21, "data science"))
 `,
-  'object-oriented-programming-22': `
-class BankAccount:
-    def __init__(self, owner: str, balance: int = 0):
-        if balance < 0:
-            raise ValueError("Opening balance cannot be negative")
-        self.owner = owner
-        self.balance = balance
+  'conditionals-exam-code': `
+def scholarship_status(mark: int, attendance: int, income: int) -> str:
+    if not 0 <= mark <= 100:
+        raise ValueError("Invalid mark")
+    if not 0 <= attendance <= 100:
+        raise ValueError("Invalid attendance")
+    if income < 0:
+        raise ValueError("Invalid income")
 
-    def deposit(self, amount: int) -> None:
-        if amount <= 0:
-            raise ValueError("Deposit must be positive")
-        self.balance += amount
-
-    def withdraw(self, amount: int) -> None:
-        if amount <= 0:
-            raise ValueError("Withdrawal must be positive")
-        if amount > self.balance:
-            raise ValueError("Insufficient funds")
-        self.balance -= amount
-
-account = BankAccount("Maya", 100)
-try:
-    account.withdraw(150)
-except ValueError:
-    pass
+    if mark >= 90 and attendance >= 85 and income <= 300000:
+        return "full"
+    if mark >= 75 and attendance >= 75:
+        return "partial"
+    return "not eligible"
 `,
-  'object-oriented-programming-23': `
-class LineItem:
-    def __init__(self, name: str, price: int, quantity: int):
-        self.name = name
-        self.price = price
-        self.quantity = quantity
+  'loops-exam-code': `
+def summarize_marks(marks: list[int]) -> dict[str, int]:
+    summary = {
+        "total": 0,
+        "pass": 0,
+        "fail": 0,
+        "distinction": 0,
+    }
 
-    def total(self) -> int:
-        return self.price * self.quantity
+    for mark in marks:
+        if not 0 <= mark <= 100:
+            raise ValueError("Invalid mark")
 
-class ShoppingCart:
-    def __init__(self):
-        self.items: list[LineItem] = []
+        summary["total"] += 1
+        if mark >= 40:
+            summary["pass"] += 1
+        else:
+            summary["fail"] += 1
 
-    def add(self, item: LineItem) -> None:
-        self.items.append(item)
+        if mark >= 75:
+            summary["distinction"] += 1
 
-    def total(self) -> int:
-        return sum(item.total() for item in self.items)
-
-cart = ShoppingCart()
-cart.add(LineItem("Notebook", 80, 2))
-cart.add(LineItem("Pen", 20, 3))
-cart.add(LineItem("Bag", 500, 1))
-print(cart.total())
+    return summary
 `,
-  'object-oriented-programming-24': `
-class LibraryBook:
-    def __init__(self, title: str, author: str):
-        self.title = title
-        self.author = author
-        self.borrower = None
+  'exceptions-exam-code': `
+def split_bill(total_text: str, people_text: str) -> float:
+    try:
+        total = float(total_text)
+        people = int(people_text)
+    except ValueError as error:
+        raise ValueError("Enter valid numbers") from error
 
-    def check_out(self, member_name: str) -> None:
-        if self.borrower is not None:
-            raise ValueError("Book is already checked out")
-        self.borrower = member_name
+    if total <= 0:
+        raise ValueError("Bill total must be positive")
+    if people <= 0:
+        raise ValueError("People count must be positive")
 
-    def return_book(self) -> None:
-        self.borrower = None
-
-    def is_available(self) -> bool:
-        return self.borrower is None
-
-book = LibraryBook("Python Basics", "LearnABLE")
-book.check_out("Ira")
-book.return_book()
+    return round(total / people, 2)
 `,
-  'object-oriented-programming-25': `
-class RestaurantOrder:
-    allowed_statuses = ["new", "preparing", "ready", "delivered"]
+  'libraries-exam-code': `
+import statistics
 
-    def __init__(self, table_number: int):
-        self.table_number = table_number
-        self.items: list[str] = []
-        self.status = "new"
+def report_scores(scores: list[int]) -> dict[str, float]:
+    if not scores:
+        raise ValueError("At least one score is required")
 
-    def add_item(self, item: str) -> None:
-        if self.status != "new":
-            raise ValueError("Cannot add items after cooking starts")
-        self.items.append(item)
+    for score in scores:
+        if not 0 <= score <= 100:
+            raise ValueError("Invalid score")
 
-    def update_status(self, status: str) -> None:
-        if status not in self.allowed_statuses:
-            raise ValueError("Invalid status")
-        self.status = status
+    return {
+        "mean": round(statistics.mean(scores), 2),
+        "median": round(statistics.median(scores), 2),
+        "highest": max(scores),
+    }
 `,
-  'object-oriented-programming-26': `
-class RideShareTrip:
-    base_fare = 40
-    price_per_km = 18
+  'unit-tests-exam-code': `
+def classify_mark(mark: int) -> str:
+    if mark < 0 or mark > 100:
+        return "invalid"
+    if mark < 40:
+        return "fail"
+    if mark < 75:
+        return "pass"
+    return "distinction"
 
-    def __init__(self, rider: str, distance_km: float):
-        if distance_km <= 0:
-            raise ValueError("Distance must be positive")
-        self.rider = rider
-        self.distance_km = distance_km
+def test_invalid_mark():
+    assert classify_mark(-1) == "invalid"
+    assert classify_mark(101) == "invalid"
 
-    def fare(self) -> float:
-        return self.base_fare + self.distance_km * self.price_per_km
+def test_fail_mark():
+    assert classify_mark(0) == "fail"
+    assert classify_mark(39) == "fail"
+
+def test_pass_mark():
+    assert classify_mark(40) == "pass"
+    assert classify_mark(74) == "pass"
+
+def test_distinction_mark():
+    assert classify_mark(75) == "distinction"
+    assert classify_mark(100) == "distinction"
 `,
-  'object-oriented-programming-27': `
-class SupportTicket:
-    def __init__(self, customer: str, issue: str):
-        self.customer = customer
-        self.issue = issue
-        self.priority = "normal"
-        self.closed = False
+  'file-io-exam-code': `
+import csv
 
-    def escalate(self) -> None:
-        if self.closed:
-            raise ValueError("Cannot escalate a closed ticket")
-        self.priority = "high"
+def load_present_names(path: str) -> list[str]:
+    present_names: list[str] = []
 
-    def close(self) -> None:
-        self.closed = True
+    with open(path, "r", encoding="utf-8", newline="") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            name = (row.get("name") or "").strip()
+            status = (row.get("status") or "").strip().lower()
+
+            if name and status == "present":
+                present_names.append(name)
+
+    return present_names
 `,
-  'object-oriented-programming-28': `
-class InventoryItem:
-    def __init__(self, name: str, quantity: int, reorder_at: int):
-        self.name = name
-        self.quantity = quantity
-        self.reorder_at = reorder_at
+  'regex-exam-code': `
+import re
 
-    def sell(self, count: int) -> None:
-        if count <= 0:
-            raise ValueError("Sell count must be positive")
-        if count > self.quantity:
-            raise ValueError("Not enough stock")
-        self.quantity -= count
+def normalize_indian_phone(text: str) -> str:
+    cleaned = re.sub(r"[\\s-]+", "", text.strip())
+    match = re.fullmatch(r"(?:\\+?91)?([6-9]\\d{9})", cleaned)
 
-    def restock(self, count: int) -> None:
-        if count <= 0:
-            raise ValueError("Restock count must be positive")
-        self.quantity += count
+    if not match:
+        raise ValueError("Invalid phone number")
 
-    def needs_reorder(self) -> bool:
-        return self.quantity <= self.reorder_at
+    return f"+91{match.group(1)}"
 `,
-  'object-oriented-programming-29': `
-class Notification:
-    def __init__(self, recipient: str, message: str):
-        self.recipient = recipient
-        self.message = message
+  'algorithms-exam-code': `
+def find_insert_position(numbers: list[int], target: int) -> int:
+    left = 0
+    right = len(numbers)
 
-    def send(self) -> str:
-        raise NotImplementedError("Subclasses must implement send")
+    while left < right:
+        middle = (left + right) // 2
 
-class EmailNotification(Notification):
-    def send(self) -> str:
-        return f"Email to {self.recipient}: {self.message}"
+        if numbers[middle] < target:
+            left = middle + 1
+        else:
+            right = middle
 
-class SmsNotification(Notification):
-    def send(self) -> str:
-        return f"SMS to {self.recipient}: {self.message}"
-
-notifications = [
-    EmailNotification("user@example.com", "Ready"),
-    SmsNotification("+919000000000", "OTP"),
-]
-
-for notification in notifications:
-    print(notification.send())
+    return left
 `,
-  'object-oriented-programming-30': `
-class Password:
-    @staticmethod
-    def is_strong(value: str) -> bool:
-        return len(value) >= 8 and any(char.isdigit() for char in value)
+  'oop-exam-code': `
+class LibraryMember:
+    max_books = 3
 
-class User:
-    def __init__(self, name: str, email: str, password: str):
-        if not name:
-            raise ValueError("Missing name")
-        if "@" not in email:
-            raise ValueError("Invalid email")
-        if not Password.is_strong(password):
-            raise ValueError("Weak password")
-        self.name = name
-        self.email = email
+    def __init__(self, name: str):
+        clean_name = name.strip()
+        if not clean_name:
+            raise ValueError("Name is required")
+        self.name = clean_name
+        self.borrowed: list[str] = []
 
-    @classmethod
-    def from_form(cls, form: dict[str, str]):
-        return cls(
-            form["name"].strip(),
-            form["email"].strip(),
-            form["password"].strip(),
-        )
+    def can_borrow(self) -> bool:
+        return len(self.borrowed) < self.max_books
+
+    def borrow(self, title: str) -> None:
+        clean_title = title.strip()
+        if not clean_title:
+            raise ValueError("Title is required")
+        if not self.can_borrow():
+            raise ValueError("Borrowing limit reached")
+        self.borrowed.append(clean_title)
+
+    def return_book(self, title: str) -> None:
+        clean_title = title.strip()
+        if clean_title not in self.borrowed:
+            raise ValueError("Book was not borrowed")
+        self.borrowed.remove(clean_title)
 `,
 };
